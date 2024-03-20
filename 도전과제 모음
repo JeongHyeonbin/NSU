@@ -1,0 +1,67 @@
+도전과제 2-1
+package demo;
+
+import java.util.Scanner;
+public class demo1 {
+
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+		double w, h, area;
+		System.out.print("직사각형의 가로의 길이를 입력하세요 : ");
+		w = sc.nextDouble();
+		System.out.print("직사각형의 세로의 길이를 입력하세요 : ");
+		h = sc.nextDouble();
+		area = w*h;
+		System.out.print("직사각형의 넓이는 : " + area + "입니다.");
+	}
+
+}
+-----------------------------
+도전과제 2-2
+package demo;
+import java.util.Scanner;
+public class demo2 {
+
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+		String y;
+		System.out.println("정수를 입력하세요 : ");
+		int a = sc.nextInt();
+		y = (a%2 == 0) ? "짝수" : "홀수";
+		System.out.println(y);
+		sc.close();  // 이걸 안쓰면 왜안되는지...공부해야겠습니다..한참을 찾아봤네요//
+	}
+
+}
+-----------------------------
+도전과제 3
+package demo2;
+
+public class demo3 {
+
+	public static void main(String[] args) {
+		 System.out.println(factorial(5));
+		 System.out.println(factorial(1,5));
+		 System.out.println(factorial(3,5));
+		 System.out.println(factorial(10,5));
+	}
+	static int factorial(int x) {
+		int r = 1;
+		while(x > 0) {
+			r *= x;
+			x --;
+		}
+		return r;
+	}
+	static int factorial(int x , int y) {
+		int r = 1;
+		while(x <= y) {
+		r *= x;
+		x++;
+		}
+		return r;
+	}
+}
+
+
+
