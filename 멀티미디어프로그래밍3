@@ -1,0 +1,215 @@
+package week4;
+class Phone {
+	String model;
+	int value;
+	
+	void print() {
+		System.out.println(value + "만 원짜리 " + model + "스마트폰");
+	}
+}
+public class phonedemo {
+
+	public static void main(String[] args) {
+		Phone myPhone;
+		myPhone = new Phone();
+		myPhone.model = "갤럭시 S8";
+		myPhone.value = 100;
+		myPhone.print();
+		
+		Phone yourPhone = new Phone();
+		yourPhone.model ="G6";
+		yourPhone.value =85;
+		yourPhone.print();
+
+	}
+
+}
+-----------------------------------------------------------------------
+package week4;
+
+public class Localvariavledemo {
+
+	public static void main(String[] args) {
+		int a =0;
+		double b;
+		int c =0;
+		
+		for(int e = 0; e< 10; e++) {
+			System.out.print(e);
+		}
+		
+
+	}
+
+}
+------------------------------------------------------------------------
+package week4;
+class Circle{
+	private double radius;
+	
+	public double getRadius() {
+		return radius;
+	}
+	
+	public void setRadius(double r) {
+		this.radius = r;
+	}
+	
+	double findArea() {
+		return 3.14 * radius * radius;
+	}
+	void show(double x, double y) {
+		System.out.printf("반지름 = %.1f,넓이 = %.1f\n",x, y);
+	}
+}
+public class Circledemo {
+
+	public static void main(String[] args) {
+		Circle myCircle = new Circle();
+		
+		myCircle.setRadius(10.0);
+		
+		myCircle.show(myCircle.getRadius(),myCircle.findArea());
+
+	}
+
+}
+----------------------------------------------------------------------
+package week4;
+class Circle{
+	private double radius;
+	public double getRadius() {
+		return radius;
+	}
+	public void setRadius(double r) {
+		this.radius = r;
+	}
+	double findArea() {
+		return 3.14 * radius * radius;
+	}
+	void show(double x, double y) {
+		System.out.printf("반지름 = %.1f, 넓이 = %1f\n",x, y);
+	}
+}
+
+public class circledemo2 {
+	public static void main(String[]args) {
+		Circle myCircle = new Circle();
+		myCircle.setRadius(10.0);
+		
+		myCircle.show(myCircle.getRadius(),myCircle.findArea());
+		
+	}
+	
+
+}
+------------------------------------------------------------------------------
+package demo1;
+class Circle {
+	private double radius;
+	
+	public Circle(double r) {
+		radius = r;
+		
+	}
+}
+public class Cdemo {
+	public static void main(String[] args) {
+		Circle myCircle = new Circle(10.0);
+	}
+
+}
+---------------------------------------------------------------------------------
+package demo1;
+class Circle {
+	double radius;
+	String color;
+	
+	public Circle(double r, String c) {
+		radius = r;
+		color = c;
+	}
+	
+	public Circle(double r) {
+		radius = r;
+		color = "파랑";
+	}
+	public Circle(String c) {
+		radius = 10.0;
+		color = c;
+	}
+	
+	public Circle() {
+		radius =10.0;
+		color = "빨강";
+	}
+	
+}
+public class demo2 {
+
+	public static void main(String[] args) {
+		
+		Circle c1 = new Circle(10.0, "빨강");
+		
+		Circle c2 = new Circle(5.0);
+		
+		Circle c3 = new Circle("노랑");
+		
+		Circle c4 = new Circle();
+
+	}
+
+}
+------------------------------------------------------------
+package demo1;
+class Person{
+	public static Person person;
+	String name;
+	int age;
+	
+	public Person setName(String name) {
+		this.name = name;
+		return this;
+	}
+		public Person setAge(int age) {
+			this.age = age;
+			return this;
+		}
+		public void sayHello() {
+			System.out.println("안녕, 나는" + name +" 이고" + age + "살이야.");
+		}
+}
+public class varargsdemo {
+
+	public static void main(String[] args) {
+		Person.person = new Person();
+		person.setName("민국").setAge(21).sayHello();
+	}
+
+}
+-------------------------------------------------------------------------------------------------
+package circledemooo;
+class Circle {
+	double radius;
+	static int numOfCircles = 0;
+	int numCircles = 0;
+
+	public Circle(double radius) {
+		this.radius = radius;
+		numOfCircles++;
+		numCircles++;
+	}
+}
+
+public class circle {
+	public static void main(String[] args) {
+		Circle myCircle = new Circle(10.0);
+		Circle yourCircle = new Circle(5.0);
+		System.out.println("원의 개수 : " + Circle.numOfCircles);
+		System.out.println("원의 개수 : " + yourCircle.numCircles);
+	}
+	void print() {
+		System.out.println("인스턴스 메서드입니다.");
+	}
+}
+-------------------------------------------------------------------------------------------------
