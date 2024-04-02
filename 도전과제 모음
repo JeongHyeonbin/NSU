@@ -63,5 +63,134 @@ public class demo3 {
 	}
 }
 
+--------------------------------------
+도전과제 4
+1번
+package cha01;
+class Printer{
+	int num0fPapers=0;
+	public void print(int amount) {
+		num0fPapers -= amount;
+	}
+}
+public class PrinterTest {
+
+	public static void main(String[] args) {
+		Printer demoPrinter = new Printer();
+		
+		System.out.println("현재 용지 수 : " + demoPrinter.num0fPapers);
+		demoPrinter.num0fPapers = 100;
+		System.out.println("용지 추가 수 : " + demoPrinter.num0fPapers);
+		demoPrinter.print(70);
+		
+		System.out.println("남아 있는 용지 : " + demoPrinter.num0fPapers);
+	}
+
+}
 
 
+
+
+2번
+
+
+
+
+package cha02;
+
+class Printer2 {
+	private int numOfPapers = 0;
+
+	public void print2(int amount) {
+		if (numOfPapers > amount) {
+			numOfPapers -= amount; 
+			System.out.println(amount + "장 출력했습니다. 현재 " + numOfPapers + "장 남아 있습니다.");
+		} else if (0 < numOfPapers && numOfPapers < amount) {
+            		numOfPapers -= amount;   
+            		amount += numOfPapers;
+            
+          
+            		System.out.printf("모두 출력하려면 용지가 %d매 부족합니다. %d장만 출력합니다.\n", (numOfPapers * -1), amount);
+		} else {
+			System.out.println("용지가 없습니다.");
+		}
+	}
+
+	public Printer2(int numOfPapers) {
+		this.numOfPapers += numOfPapers;
+	}
+}
+
+
+public class PrinterTest2 {
+	public static void main(String[] args) {
+		Printer2 demoPrinter = new Printer2(10);
+		demoPrinter.print2(2);
+		demoPrinter.print2(20);
+		demoPrinter.print2(10);
+	}
+
+}
+
+
+
+
+3번
+
+
+
+
+
+package cha03;
+
+class Printer3 {
+	private int numOfPapers;
+	private boolean duplex;
+
+	public Printer3(int numOfPapers, boolean duplex) {
+		this.numOfPapers = numOfPapers;
+		this.duplex = duplex;
+	}
+
+	public void print(int amount) {
+		if (duplex == true) {
+			if ((amount / 2) == 0) {  
+				numOfPapers -= amount / 2;
+				System.out.printf("양면으로 %d장 출력했습니다. 현재 %d장 남아 있습니다.\n", (amount / 2), numOfPapers);
+			} else {
+				numOfPapers -= (amount / 2) + 1;
+				System.out.printf("양면으로 %d장 출력했습니다. 현재 %d장 남아 있습니다.\n", (amount / 2) + 1, numOfPapers);
+			}
+		} else {
+			if (numOfPapers > amount) {
+				numOfPapers -= amount;  
+				System.out.printf("단면으로 모두 출력하여 용지 %d장을 출력하고 남아있는 용지는 %d장 입니다.\n", amount, numOfPapers);
+			} else {
+				numOfPapers -= amount;
+				amount += numOfPapers;
+				System.out.printf("단면으로 모두 출력하려면 용지가 %d매 부족합니다. %d장만 출력합니다.\n", (numOfPapers * -1), amount);
+			}
+		}
+	}
+
+	public boolean getDuplex() {
+		return duplex;
+	}
+
+	public void setDuplex(boolean duplex) {
+		this.duplex = duplex;
+	}
+
+}
+
+
+public class PrinterTest3 {
+
+	public static void main(String[] args) {
+		Printer3 demoPrinter = new Printer3(20, true); 
+		demoPrinter.print(25); 
+		demoPrinter.setDuplex(false); 
+		demoPrinter.print(10);
+	}
+}
+-------------------------------------------------------------------------------------
