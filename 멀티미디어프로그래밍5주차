@@ -1,0 +1,250 @@
+package string;
+
+public class String1Demo {
+	public static void main(String[] args) {
+		String s1 = "Hi, Java!";
+		String s2 = "Hi, Java!";
+		String s3 = new String("Hi, Java!");
+		String s4 = new String("Hi, Java!");
+
+		System.out.println("s1 == s2 -> " + (s1 == s2));
+		System.out.println("s1 == s3 -> " + (s1 == s3));
+		System.out.println("s3 == s4 -> " + (s3 == s4));
+
+		s1 = s3;
+		System.out.println("s1 == s3 -> " + (s1 == s3));
+	}
+}
+
+package string;
+
+public class String3Demo {
+
+	public static void main(String[] args) {
+		String s1= new String("Hi,");
+		String s2 = new String("java");
+		
+		System.out.println("문자열 길이(s1) : " + s1.length());
+		System.out.println(s1.charAt(1));
+		
+		s1 = s1.concat(s2);
+		
+		System.out.println(s1.concat(s2) + "!");
+		System.out.println(s1.toLowerCase() + "!");
+		System.out.println(s1.substring(4, 8) + "!");
+		
+		String s3 = " ";
+		System.out.println(s3.isEmpty());
+		System.out.println(s3.isBlank());
+		String s4 = "";
+		System.out.println(s4.isEmpty());
+		System.out.println(s4.isBlank());
+
+		String s5 = "*-*";
+		System.out.println(s5.repeat(10));
+		
+		System.out.println(s2.trim().indexOf("v"));
+				
+
+---
+
+package string;
+
+public class String4demo {
+
+	public static void main(String[] args) {
+		int i = 7;
+		System.out.println("Java " + i);
+		System.out.println("Java " + 7);
+		System.out.println("Java " + 7 +1 );
+
+	}
+
+}
+--
+
+package string;
+import java.util.Scanner;
+public class Reverse {
+
+	public static void main(String[] args) {
+		Scanner scan = new Scanner(System.in);
+		String str;
+		String strResult;
+		String strTemp;
+		int nLen;
+		System.out.print("문자열을 입력하시오 : ");
+		str = scan.next();
+		
+		nLen = str.length();
+		strResult="";
+		for (int i=nLen-1; i >= 0; i--)
+		{
+			strTemp="";
+			strTemp = String.format("%c", str.charAt(i));
+			strResult = strResult.concat(strTemp);
+		}
+	
+		System.out.println(strResult);
+	}
+}
+--------------
+package string;
+
+import java.util.ArrayList;
+import java.util.Scanner;
+
+public class ArrayListDemo {
+	public static void main(String[] args) {
+		Scanner in = new Scanner(System.in);
+		ArrayList<Integer> scores = new ArrayList<>();
+		int data;
+		int sum = 0;
+
+		while ((data = in.nextInt()) >= 0)
+			scores.add(data);
+
+		for (int i = 0; i < scores.size(); i++)
+			sum += scores.get(i);
+
+		System.out.println("평균 = " + (double)sum / scores.size());
+	}
+}
+
+----------
+package string;
+
+public class VarArgsDemo {
+	public static void main(String[] args) {
+		printSum(1, 2, 3, 4, 5);
+		printSum(10, 20, 30);
+		System.out.println(String.format("My score is %.1f", 99.8);
+		System.out.println(String.join(", ", "one", "two", "three");
+	}
+
+	public static void printSum(int... v) {
+		int sum = 0;
+		for (int i : v)
+			sum += i;
+		System.out.println(sum);
+	}
+}
+---------------
+package string;
+
+import java.util.ArrayList;
+import java.util.Scanner;
+
+public class ArrayListDemo {
+	public static void main(String[] args) {
+		Scanner in = new Scanner(System.in);
+		ArrayList<Integer> scores = new ArrayList<>();
+		int data;
+		int sum = 0;
+
+		while ((data = in.nextInt()) >= 0)
+			scores.add(data);
+
+		for (int i = 0; i < scores.size(); i++)
+			sum += scores.get(i);
+
+		System.out.println("평균 = " + (double)sum / scores.size());
+	}
+}
+------------------------------------------
+package string;
+
+public class MainArgumentDemo {
+	public static void main(String[] args) {
+		if (args.length == 2) {
+			int i = Integer.parseInt(args[1]);
+			nPrintln(args[0], i);
+		} else
+			System.out.println("어이쿠!");
+	}
+
+	public static void nPrintln(String s, int n) {
+		for (int i = 0; i < n; i++)
+			System.out.println(s);
+	}
+}
+------------------------
+package string;
+
+class Circle {
+	double radius;
+
+	public Circle(double radius) {
+		this.radius = radius;
+	}
+
+	public double getRadius() {
+		return radius;
+	}
+
+	double findArea() {
+		return 3.14 * radius * radius;
+	}
+}
+
+public class CircleArrayDemo {
+	public static void main(String[] args) {
+		Circle[] circles = new Circle[5];
+
+		for (int i = 0; i < circles.length; i++) {
+			circles[i] = new Circle(i + 1.0);
+			System.out.printf("원의넓이(반지름 : %.1f) = %.2f\n", circles[i].radius, circles[i].findArea());
+		}
+	}
+}
+--------------------------------
+package string;
+
+public class EnumDemo {
+    public static void main(String[] args) {
+        Gender gender = Gender.FEMALE;
+        if (gender == Gender.MALE)
+            System.out.println(Gender.MALE + "은 병역 의무가 있다.");
+        else
+            System.out.println(Gender.FEMALE + "은 병역 의무가 없다.");
+
+    }
+}
+
+enum Gender { MALE, FEMALE }
+
+enum Direction { EAST, WEST, SOUTH, NORTH }
+
+---------------------------------------------
+package string;
+
+public class EnumDemo {
+    public static void main(String[] args) {
+        Gender gender = Gender.FEMALE;
+        if (gender == Gender.MALE)
+            System.out.println(Gender.MALE + "은 병역 의무가 있다.");
+        else
+            System.out.println(Gender.FEMALE + "은 병역 의무가 없다.");
+
+        for(Gender g : Gender.values())
+            System.out.println(g.name());
+
+        System.out.println(Gender.valueOf("MALE"));
+    }
+}
+
+enum Gender {
+    MALE("남성"), FEMALE("여성");
+
+    private String s;
+
+    Gender(String s) {
+        this.s = s;
+    }
+
+    public String toString() {
+        return s;
+    }
+}
+
+---------------------------------------------
