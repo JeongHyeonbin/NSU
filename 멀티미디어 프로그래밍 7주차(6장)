@@ -13,7 +13,7 @@ public class Circle {
 		System.out.println("넓이는 (파이*반지름*반지름)이다.");
 	}
 }
--------------------------------------------
+
 package sec02;
 
 public class Ball extends Circle {
@@ -30,8 +30,12 @@ public class Ball extends Circle {
 	public void findVolume() {
 		System.out.println("부피는 4/3*(파이*반지름*반지름*반지름)이다.");
 	}
+	@override
+	public void findArea() {
+		System.out.println("넓이는 4*(파이*반지름*반지름)이다.");
+	}
 }
-------------------------------------------------------
+
 package sec02;
 
 public class InheritanceDemo {
@@ -50,4 +54,102 @@ public class InheritanceDemo {
 		c2.findVolume();
 	}
 }
-----------------------------------------------------
+
+
+package sec06;
+
+public class One {
+	private int secret = 1;
+	int roommate = 2;
+	protected int child = 3;
+	public int anybody = 4;
+
+	public void show() {
+	}
+}
+
+package sec06;
+
+public class One1 extends One {
+	void print() {
+		System.out.println(roommate);
+		System.out.println(child);
+		System.out.println(anybody);
+	}
+}
+
+
+package sec06;
+
+public class Two {
+	void print() {
+		One o = new One();
+
+		System.out.println(o.roommate);
+		System.out.println(o.child);
+		System.out.println(o.anybody);
+	}
+}
+
+package sec06.other;
+
+import sec06.One;
+
+public class One2 extends One {
+	void print() {
+		System.out.println(child);
+		System.out.println(anybody);
+	}
+}
+
+package sec06.other;
+
+import sec06.One;
+
+public class Three {
+	void print() {
+		One o = new One();
+		System.out.println(o.anybody);
+	}
+}
+
+package sec07;
+
+class Good {
+}
+
+class Better extends Good {
+}
+
+final class Best extends Better {
+}
+
+public class FinalClassDemo {
+	public static void main(String[] args) {
+		// new NumberOne();
+		new Best();
+	}
+}
+
+package sec07;
+
+class Chess {
+	enum ChessPlayer {
+		WHITE, BLACK
+	}
+
+	final ChessPlayer getFirstPlayer() {
+		return ChessPlayer.WHITE;
+	}
+}
+
+class WorldChess extends Chess {
+}
+
+public class FinalMethodDemo {
+	public static void main(String[] args) {
+		WorldChess w = new WorldChess();
+		w.getFirstPlayer();
+	}
+}
+
