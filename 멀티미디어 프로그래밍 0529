@@ -1,0 +1,167 @@
+package class09;
+
+public class Entry<K, V> {
+	private K key;
+	private V value;
+
+	public Entry(K key, V value) {
+		this.key = key;
+		this.value = value;
+	}
+
+	public K getKey() {
+		return key;
+	}
+
+	public V getValue() {
+		return value;
+	}
+}
+----------------------------------------------------
+package class09;
+
+public class EntryDemo {
+	public static void main(String[] args) {
+		Entry<String, Integer> e1 = new Entry<>("김선달", 20);
+		Entry<String, String> e2 = new Entry<>("기타", "등등");
+
+		System.out.println(e1.getKey() + " " + e1.getValue());
+		System.out.println(e2.getKey() + " " + e2.getValue());
+	}
+}
+
+-------------------------------------------------------
+package class09;
+
+import java.util.ArrayList;
+
+public class GenericInheritanceDemo {
+    public static void main(String[] args) {
+        ArrayList<Beverage> list1 = new ArrayList<>();
+        list1.add(new Beer());
+        beverageTest(list1);
+
+        ArrayList<Beer> list2 = new ArrayList<>();
+        list2.add(new Beer());
+    }
+
+    static public void beverageTest(ArrayList<Beverage> list) { }
+
+----------------------------------------------------------
+package class11;
+
+import java.util.*;
+
+public class IteratorDemo {
+    public static void main(String[] args) {
+        Collection<String> list = Arrays.asList("다람쥐", "개구리","나비");
+
+        Iterator<String> iterator = list.iterator();
+        while (iterator.hasNext())
+            System.out.print(iterator.next() + "-");
+        System.out.println();
+
+        while (iterator.hasNext())
+            System.out.print(iterator.next() + "+");
+        System.out.println();
+
+
+        iterator = list.iterator();
+        while (iterator.hasNext())
+            System.out.print(iterator.next() + "=");
+
+
+---------------------------------------------------------
+package class11;
+
+import java.util.Arrays;
+import java.util.List;
+
+public class ListDemo {
+    public static void main(String[] args) {
+        String[] animals1 = { "사슴", "호랑이", "바다표범", "곰" };
+
+        List<String> animals2 = Arrays.asList(animals1);
+        animals2.set(1, "앵무새");
+
+        for (String s : animals2)
+            System.out.print(s + " ");
+        System.out.println();
+
+        animals2.sort((x, y) -> x.length() - y.length());
+        String[] animals3 = animals2.toArray(new String[0]);
+        for (int i = 0; i < animals3.length; i++)
+            System.out.print(animals3[i] + " ");
+        System.out.println();
+
+        List<String> car = List.of("그랜저", "소나타", "아반테", "제네시스");
+//        car.set(1, "��Ÿ��");
+        car.forEach(s -> System.out.print(s + " "));
+
+//        List<Object> objects = List.of("a", null);
+    }
+}
+    }
+}
+------------------------------------------------------------
+
+package class11;
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class ArrayListDemo {
+    public static void main(String[] args) {
+        List<String> list = List.of("그랜저", "소나타", "아반테", "제네시스", "소울");
+
+        System.out.println(list.indexOf("소나타"));
+        System.out.println(list.contains("싼타페"));
+
+        List<String> cars1 = new ArrayList<>(list);
+        cars1.add("싼타페");
+        List<String> cars2 = new ArrayList<>(list);
+        cars2.remove("제네시스");
+        System.out.println(cars1.containsAll(cars2));
+
+        cars1.removeIf(c -> c.startsWith("소"));
+        cars1.replaceAll(s -> "뉴" + s);
+        cars1.forEach(s -> System.out.print(s + " "));
+        System.out.println();
+
+        cars1.clear();
+        System.out.println(cars1.isEmpty());
+    }
+}
+-------------------------------------------------------
+package class11;
+
+import java.util.Stack;
+
+public class StackDemo {
+	public static void main(String[] args) {
+		Stack<String> s1 = new Stack<>();
+
+		s1.push("사과");
+		s1.push("바나나");
+		s1.push("체리");
+
+		System.out.println(s1.peek());
+
+		System.out.println(s1.pop());
+		System.out.println(s1.pop());
+		System.out.println(s1.pop());
+
+		Stack<Integer> s2 = new Stack<>();
+
+		s2.add(10);
+		s2.add(20);
+		s2.add(1, 100);
+
+		for (int value : s2)
+			System.out.print(value + " ");
+		System.out.println();
+
+		while (!s2.empty())
+			System.out.print(s2.pop() + " ");
+	}
+}
