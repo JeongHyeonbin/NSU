@@ -323,3 +323,807 @@ enum Score {
 }
 
 -----------------------------------------------------------------------------------
+6장
+class Girl {
+	String name;
+}
+
+class GoodGirl extends Girl {
+	void show() {
+		System.out.println("그녀는 자바를 잘 안다.");
+	}
+}
+
+class BestGirl extends GoodGirl {
+	void show() {
+		System.out.println("그녀는 자바를 무지하게 잘 안다.");
+	}
+}
+
+public class GirlTest {
+	public static void main(String[] args) {
+		Girl g1 = new Girl();
+		Girl g2 = new GoodGirl();
+		GoodGirl gg = new BestGirl();
+
+		// g2.show();
+		gg.show();
+	}
+}
+
+
+class Girl {
+	private String name;
+
+	Girl() {
+	}
+
+	Girl(String name) {
+		this.name = name;
+	}
+
+	void show() {
+		System.out.println("그녀는 자바 초보자이다.");
+	}
+}
+
+class GoodGirl extends Girl {
+	void show() {
+		System.out.println("그녀는 자바를 잘 안다.");
+	}
+}
+
+class BestGirl extends GoodGirl {
+	void show() {
+		System.out.println("그녀는 자바를 무지하게 잘 안다.");
+	}
+}
+
+public class GirlTest {
+	public static void main(String[] args) {
+		Girl g1 = new Girl();
+		Girl g2 = new GoodGirl();
+		GoodGirl gg = new BestGirl();
+
+		g2.show();
+		gg.show();
+	}
+}
+
+class Girl {
+	protected String name;
+
+	Girl(String name) {
+		this.name = name;
+	}
+
+	void show() {
+		System.out.println("그녀는 자바 초보자이다.");
+	}
+}
+
+class GoodGirl extends Girl {
+
+	GoodGirl(String name) {
+		super(name);
+	}
+
+	void show() {
+		System.out.println(name + "는 자바를 잘 안다.");
+	}
+}
+
+class BestGirl extends GoodGirl {
+
+	BestGirl(String name) {
+		super(name);
+	}
+
+	void show() {
+		System.out.println(name + "는 자바를 무지하게 잘 안다.");
+	}
+}
+
+public class GirlTest {
+	public static void main(String[] args) {
+		Girl[] girls = { new Girl("갑순이"), new GoodGirl("콩쥐"), new BestGirl("황진이") };
+
+		for (Girl g : girls)
+			g.show();
+	}
+}
+--
+7장
+interface Countable {
+	void count();
+}
+
+class Bird implements Countable {
+	String name;
+
+	Bird(String name) {
+		this.name = name;
+	}
+
+	public void count() {
+		System.out.println(name + "가 2마리 있다.");
+	}
+
+	void fly() {
+		System.out.println("2마리 " + name + "가 날아간다.");
+	}
+}
+
+class Tree implements Countable {
+	String name;
+
+	Tree(String name) {
+		this.name = name;
+	}
+
+	public void count() {
+		System.out.println(name + "가 5그루 있다.");
+	}
+
+	void ripen() {
+		System.out.println(name + "에 열매가 잘 익었다.");
+	}
+}
+
+public class CountableTest {
+	public static void main(String[] args) {
+		Countable[] m = { new Bird("뻐꾸기"), new Bird("독수리"), new Tree("사과 나무"), new Tree("복숭아 나무") };
+
+		for (Countable e : m)
+			e.count();
+
+
+
+interface Countable {
+	void count();
+}
+
+class Bird implements Countable {
+	String name;
+
+	Bird(String name) {
+		this.name = name;
+	}
+
+	public void count() {
+		System.out.println(name + "가 2마리 있다.");
+	}
+
+	void fly() {
+		System.out.println("2마리 " + name + "가 날아간다.");
+	}
+}
+
+class Tree implements Countable {
+	String name;
+
+	Tree(String name) {
+		this.name = name;
+	}
+
+	public void count() {
+		System.out.println(name + "가 5그루 있다.");
+	}
+
+	void ripen() {
+		System.out.println(name + "에 열매가 잘 익었다.");
+	}
+}
+
+public class CountableTest {
+	public static void main(String[] args) {
+		Countable[] m = { new Bird("뻐꾸기"), new Bird("독수리"), new Tree("사과나무"), new Tree("밤나무") };
+
+		for (Countable e : m)
+			e.count();
+
+		for (int i = 0; i < m.length; i++) {
+			if (m[i] instanceof Bird)
+				((Bird) m[i]).fly();
+			else
+				((Tree) m[i]).ripen();
+		}
+	}
+}
+
+
+abstract class Countable {
+	String name;
+	protected int num;
+
+	abstract void count();
+
+	public Countable(String name, int num) {
+		this.name = name;
+		this.num = num;
+	}
+}
+
+class Bird extends Countable {
+	public Bird(String name, int num) {
+		super(name, num);
+	}
+
+	public void count() {
+		System.out.println(name + "가 " + num + "마리 있다.");
+	}
+
+	public void fly() {
+		System.out.println(num + "마리 " + name + "가 날아간다.");
+	}
+}
+
+class Tree extends Countable {
+	public Tree(String name, int num) {
+		super(name, num);
+	}
+
+	public void count() {
+		System.out.println(name + "가 " + num + "그루 있다.");
+	}
+
+	public void ripen() {
+		System.out.println(num + "그루 " + name + "에 열매가 잘 익었다.");
+	}
+}
+
+public class CountableTest {
+	public static void main(String[] args) {
+		Countable[] m = {new Bird("뻐꾸기", 5), new Bird("독수리", 2),
+				new Tree("사과나무", 10), new Tree("밤나무", 7)};
+
+		for (Countable e : m)
+			e.count();
+
+		for (int i = 0; i < m.length; i++) {
+			if (m[i] instanceof Bird)
+				((Bird) m[i]).fly();
+			else
+				((Tree) m[i]).ripen();
+		}
+	}
+}
+--
+8장
+
+class Car {
+	private String model;
+
+	public Car(String model) {
+		this.model = model;
+	}
+
+	@Override
+	public String toString() {
+		return "[" + model + "]";
+	}
+}
+
+public class CarTest {
+	public static void main(String[] args) {
+		Car myCar = new Car("그랜저");
+		Car yourCar = new Car("그랜저");
+
+		if (myCar.equals(yourCar))
+			System.out.printf("자동차 모델이 둘다 %s로 동일하다.\n", myCar);
+		else
+			System.out.printf("내 자동차는 %s, 너 자동차는 %s로 모델이 다르다.\n", myCar, yourCar);
+	}
+}
+
+import java.text.MessageFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
+class Car {
+	private String model;
+
+	public Car(String model) {
+		this.model = model;
+	}
+
+	@Override
+	public String toString() {
+		return "[" + model + "]";
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (obj instanceof Car)
+			return model.equals(((Car) obj).model);
+		else
+			return false;
+	}
+}
+
+public class CarTest {
+	public static void main(String[] args) {
+		Car myCar = new Car("그랜저");
+		Car yourCar = new Car("그랜저");
+
+		if (myCar.equals(yourCar))
+			System.out.printf("자동차 모델이 둘다 %s로 동일하다.\n", myCar);
+		else
+			System.out.printf("내 자동차는 %s, 너 자동차는 %s로 모델이 다르다.\n", myCar, yourCar);
+
+		SimpleDateFormat f = new SimpleDateFormat("MM-dd-yyyy");
+		String s = MessageFormat.format("날짜: {0}, 자동차 모델={1}, 운전자({2})", f.format(new Date()), myCar, "홍길동");
+		System.out.println(s);
+
+	}
+}
+
+import java.text.MessageFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.StringTokenizer;
+
+class Car {
+	private String model;
+
+	public Car(String model) {
+		this.model = model;
+	}
+
+	@Override
+	public String toString() {
+		return "[" + model + "]";
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (obj instanceof Car)
+			return model.equals(((Car) obj).model);
+		else
+			return false;
+	}
+}
+
+public class CarTest {
+	public static void main(String[] args) {
+		Car myCar = new Car("그랜저");
+		Car yourCar = new Car("그랜저");
+
+		if (myCar.equals(yourCar))
+			System.out.printf("자동차 모델이 둘다 %s로 동일하다.\n", myCar);
+		else
+			System.out.printf("내 자동차는 %s, 너 자동차는 %s로 모델이 다르다.\n", myCar, yourCar);
+
+		SimpleDateFormat f = new SimpleDateFormat("MM-dd-yyyy");
+		String s = MessageFormat.format("날짜: {0}, 자동차 모델={1}, 운전자({2})", f.format(new Date()), myCar, "홍길동");
+		System.out.println(s);
+
+		StringTokenizer st = new StringTokenizer(s, "[=],() ");
+		while (st.hasMoreTokens())
+			System.out.println(st.nextToken());
+
+	}
+}
+
+---------
+9장
+public class EnglishScore implements Comparable<EnglishScore> {
+	String name;
+	int score;
+
+	public EnglishScore(String name, int score) {
+		this.name = name;
+		this.score = score;
+	}
+
+	@Override
+	public int compareTo(EnglishScore e) {
+		if (this.score > e.score)
+			return 1;
+		else if (this.score == e.score)
+			return 0;
+		else
+			return -1;
+	}
+
+	@Override
+	public String toString() {
+		return name + ", " + score;
+	}
+}
+
+public class ScoreTest {
+	static EnglishScore findBest(EnglishScore[] a) {
+		EnglishScore best = a[0];
+
+		for (int i = 0; i < a.length; i++)
+			if (best.compareTo(a[i]) < 0)
+				best = a[i];
+		return best;
+	}
+
+	public static void main(String[] args) {
+		EnglishScore[] ea = { new EnglishScore("김삿갓", 77), new EnglishScore("장영실", 88), new EnglishScore("홍길동", 99) };
+
+		System.out.println("영어 최고 점수: " + findBest(ea));
+	}
+}
+
+
+
+public class EnglishScore implements Comparable<EnglishScore> {
+	String name;
+	int score;
+
+	public EnglishScore(String name, int score) {
+		this.name = name;
+		this.score = score;
+	}
+
+	@Override
+	public int compareTo(EnglishScore e) {
+		if (this.score > e.score)
+			return 1;
+		else if (this.score == e.score)
+			return 0;
+		else
+			return -1;
+	}
+
+	@Override
+	public String toString() {
+		return name + ", " + score;
+	}
+}
+
+public class MathScore implements Comparable<MathScore> {
+	String name;
+	int score;
+
+	public MathScore(String name, int rank) {
+		this.name = name;
+		this.score = rank;
+	}
+
+	@Override
+	public int compareTo(MathScore m) {
+		if (this.score > m.score)
+			return 1;
+		else if (this.score == m.score)
+			return 0;
+		else
+			return -1;
+	}
+
+	@Override
+	public String toString() {
+		return name + ", " + score;
+	}
+}
+
+public class ScoreTest {
+	static <T extends Comparable> T findBest(T[] a) {
+		T best = a[0];
+
+		for (int i = 0; i < a.length; i++)
+			if (best.compareTo(a[i]) < 0)
+				best = a[i];
+		return best;
+	}
+
+	public static void main(String[] args) {
+		EnglishScore[] ea = { new EnglishScore("김삿갓", 77), new EnglishScore("장영실", 88), new EnglishScore("홍길동", 99) };
+		MathScore[] ma = { new MathScore("김삿갓", 80), new MathScore("장영실", 98), new MathScore("홍길동", 70) };
+
+		System.out.println("영어 최고 점수 : " + findBest(ea));
+		System.out.println("수학 최고 점수 : " + findBest(ma));
+	}
+}
+
+
+public class EnglishScore implements Comparable<EnglishScore> {
+	String name;
+	int score;
+
+	public EnglishScore(String name, int score) {
+		this.name = name;
+		this.score = score;
+	}
+
+	@Override
+	public int compareTo(EnglishScore e) {
+		if (this.score > e.score)
+			return 1;
+		else if (this.score == e.score)
+			return 0;
+		else
+			return -1;
+	}
+
+	@Override
+	public String toString() {
+		return name + ", " + score;
+	}
+}
+public class MathScore implements Comparable<MathScore> {
+	String name;
+	int score;
+
+	public MathScore(String name, int rank) {
+		this.name = name;
+		this.score = rank;
+	}
+
+	@Override
+	public int compareTo(MathScore m) {
+		if (this.score > m.score)
+			return 1;
+		else if (this.score == m.score)
+			return 0;
+		else
+			return -1;
+	}
+
+	@Override
+	public String toString() {
+		return name + ", " + score;
+	}
+}
+public class ScoreTest {
+	static <T extends Comparable> T findBest(T[] a) {
+		T best = a[0];
+
+		for (int i = 0; i < a.length; i++)
+			if (best.compareTo(a[i]) < 0)
+				best = a[i];
+		return best;
+	}
+
+	static <T> T findScore(T[] a, String name) {
+		for (int i = 0; i < a.length; i++) {
+			if (a[i].toString().substring(0, 3).equals(name))
+				return a[i];
+		}
+		return null;
+	}
+
+	public static void main(String[] args) {
+		EnglishScore[] ea = { new EnglishScore("김삿갓", 77), new EnglishScore("장영실", 88), new EnglishScore("홍길동", 99) };
+		MathScore[] ma = { new MathScore("김삿갓", 80), new MathScore("장영실", 98), new MathScore("홍길동", 70) };
+		String name = null;
+
+		System.out.println("영어 최고 점수 : " + findBest(ea));
+		System.out.println("수학 최고 점수 : " + findBest(ma));
+
+		try {
+			name = args[0];
+		} catch (ArrayIndexOutOfBoundsException e) {
+			System.out.println("명령행 인자가 없습니다.");
+			return;
+		}
+
+		System.out.println("영어       점수 : " + findScore(ea, name));
+		System.out.println("수학       점수 : " + findScore(ma, name));
+	}
+}
+
+-
+10장
+
+import java.util.Arrays;
+import java.util.List;
+
+public class Shape {
+    private String type;
+    private String color;
+    private Double area;
+
+    public Shape(String type, String color, Double area) {
+        this.type = type;
+        this.color = color;
+        this.area = area;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public String getColor() {
+        return color;
+    }
+
+    public Double getArea() {
+        return area;
+    }
+
+    @Override
+    public String toString() {
+        return String.format("%s(%s, %.1f)", type, color, area);
+    }
+
+    static List<Shape> shapes = Arrays.asList(
+            new Shape("삼각형", "빨간색", 10.5),
+            new Shape("사각형", "파란색", 11.2),
+            new Shape("원", "파란색", 16.5),
+            new Shape("원", "빨간색", 5.3),
+            new Shape("원", "노란색", 8.1),
+            new Shape("사각형", "파란색", 20.7),
+            new Shape("삼각형", "파란색", 3.4),
+            new Shape("사각형", "빨간색", 12.6)
+    );
+}
+
+import java.util.Arrays;
+import java.util.List;
+
+public class Shape {
+    private String type;
+    private String color;
+    private Double area;
+
+    public Shape(String type, String color, Double area) {
+        this.type = type;
+        this.color = color;
+        this.area = area;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public String getColor() {
+        return color;
+    }
+
+    public Double getArea() {
+        return area;
+    }
+
+    @Override
+    public String toString() {
+        return String.format("%s(%s, %.1f)", type, color, area);
+    }
+
+    static List<Shape> shapes = Arrays.asList(
+            new Shape("삼각형", "빨간색", 10.5),
+            new Shape("사각형", "파란색", 11.2),
+            new Shape("원", "파란색", 16.5),
+            new Shape("원", "빨간색", 5.3),
+            new Shape("원", "노란색", 8.1),
+            new Shape("사각형", "파란색", 20.7),
+            new Shape("삼각형", "파란색", 3.4),
+            new Shape("사각형", "빨간색", 12.6)
+    );
+}
+
+
+
+import java.util.Arrays;
+import java.util.List;
+
+public class Shape {
+    private String type;
+    private String color;
+    private Double area;
+
+    public Shape(String type, String color, Double area) {
+        this.type = type;
+        this.color = color;
+        this.area = area;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public String getColor() {
+        return color;
+    }
+
+    public Double getArea() {
+        return area;
+    }
+
+    @Override
+    public String toString() {
+        return String.format("%s(%s, %.1f)", type, color, area);
+    }
+
+    static List<Shape> shapes = Arrays.asList(
+            new Shape("삼각형", "빨간색", 10.5),
+            new Shape("사각형", "파란색", 11.2),
+            new Shape("원", "파란색", 16.5),
+            new Shape("원", "빨간색", 5.3),
+            new Shape("원", "노란색", 8.1),
+            new Shape("사각형", "파란색", 20.7),
+            new Shape("삼각형", "파란색", 3.4),
+            new Shape("사각형", "빨간색", 12.6)
+    );
+}
+
+--------
+11장
+
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
+
+public class CapitalsDemo {
+    public static void main(String[] args) {
+        List<String> capitals = new ArrayList<>();
+        capitals.add("서울");
+        capitals.add("워싱턴");
+        capitals.add("베이징");
+        capitals.add("파리");
+        capitals.add("마드리드");
+
+        for (String capital : capitals)
+            System.out.print(capital + " ");
+        System.out.println();
+
+        capitals.add("런던");
+        Iterator<String > i = capitals.iterator();
+        while(i.hasNext())
+            System.out.print(i.next() + " ");
+        System.out.println();
+
+        capitals.removeIf(s -> s.length() > 2);
+        capitals.forEach(s -> System.out.print(s + " "));
+    }
+}
+
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
+
+public class CapitalsDemo {
+    public static void main(String[] args) {
+        List<String> capitals = new ArrayList<>();
+        capitals.add("서울");
+        capitals.add("워싱턴");
+        capitals.add("베이징");
+        capitals.add("파리");
+        capitals.add("마드리드");
+
+        for (String capital : capitals)
+            System.out.print(capital + " ");
+        System.out.println();
+
+        capitals.add("런던");
+        Iterator<String > i = capitals.iterator();
+        while(i.hasNext())
+            System.out.print(i.next() + " ");
+        System.out.println();
+
+        capitals.removeIf(s -> s.length() > 2);
+        capitals.forEach(s -> System.out.print(s + " "));
+    }
+}
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+public class DicTest {
+	public static void main(String[] args) {
+		Map<String, String> dic = new HashMap<>();
+
+		dic.put("cat", "꼬네이");
+		dic.put("head", "대가빠리");
+		dic.put("aunt", "아지매");
+		dic.put("noodle", "국시");
+		dic.put("teacher", "쌤");
+		dic.put("child", "얼라");
+		
+		dic.forEach((x, y) -> System.out.print(x + "=" + y + "  "));
+		System.out.println();
+
+		Collection<String> collection1 = dic.values();
+		List<String> list = new ArrayList<>(collection1);	// Collection 타입을 List 타입으로 변환
+		Collections.shuffle(list);							// List 객체의 원소 섞기
+		list.forEach(x -> System.out.print(x + "  "));
+	}
+}
+
