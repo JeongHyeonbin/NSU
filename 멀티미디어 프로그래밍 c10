@@ -1,0 +1,329 @@
+import java.util.Arrays;
+
+class Rectangle implements Comparable<Rectangle> {
+    private int width, height;
+
+    public Rectangle(int width, int height) {
+        this.width = width;
+        this.height = height;
+    }
+
+    public int findArea() {
+        return width * height;
+    }
+
+    public String toString() {
+        return String.format("사각형[폭=%d, 높이=%d]", width, height);
+    }
+
+    public int compareTo(Rectangle o) {
+        return findArea() - o.findArea();
+    }
+}
+
+public class ComparableDemo {
+    public static void main(String[] args) {
+        Rectangle[] rectangles = { new Rectangle(3, 5),
+                new Rectangle(2, 10), new Rectangle(5, 5) };
+
+        Arrays.sort(rectangles);
+
+        for (Rectangle r : rectangles)
+            System.out.println(r);
+    }
+}
+
+
+
+--
+
+import java.util.Arrays;
+import java.util.Comparator;
+
+public class ComparatorDemo {
+    public static void main(String[] args) {
+        String[] strings = { "로마에 가면 로마법을 따르라.",
+                "시간은 금이다.", "펜은 칼보다 강하다." };
+
+        Arrays.sort(strings, new Comparator<String>() {
+            public int compare(String first, String second) {
+                return first.length() - second.length();
+            }
+        });
+
+        for (String s : strings)
+            System.out.println(s);
+    }
+}
+--
+interface NewObject<T> {
+    T getObject(T o);
+}
+
+interface NewArray<T> {
+    T[] getArray(int size);
+}
+
+public class ConstructorRefDemo {
+    public static void main(String[] args) {
+        NewObject<String> s;
+        NewArray<Integer> i;
+
+//        s = x -> new String(x);
+        s = String::new;
+        String str = s.getObject("사과");
+
+//        i = x -> new Integer[x];
+        i = Integer[]::new;
+        Integer[] array = i.getArray(2);
+        array[0] = 10;
+        array[1] = 20;
+    }
+}
+
+--
+import java.util.Arrays;
+
+public class Lambda1Demo {
+    public static void main(String[] args) {
+        String[] strings = { "로마에 가면 로마법을 따르라.", "시간은 금이다.", "펜은 칼보다 강하다." };
+
+        Arrays.sort(strings, (first, second) -> first.length() - second.length());
+
+        for (String s : strings)
+            System.out.println(s);
+    }
+}
+--
+import java.util.Arrays;
+
+public class Lambda1Demo {
+    public static void main(String[] args) {
+        String[] strings = { "로마에 가면 로마법을 따르라.", "시간은 금이다.", "펜은 칼보다 강하다." };
+
+        Arrays.sort(strings, (first, second) -> first.length() - second.length());
+
+        for (String s : strings)
+            System.out.println(s);
+    }
+}
+--
+interface Negative {
+    int neg(int x);
+}
+
+interface Printable {
+    void print();
+}
+
+public class Lambda2Demo {
+    public static void main(String[] args) {
+        Negative n;
+        n = (int x) -> { return -x; };
+
+        n = (x) -> { return -x; };
+
+        n = x -> { return -x; };
+
+        n = (int x) -> -x;
+
+        n = (x) -> -x;
+
+        n = x -> -x;
+
+        Printable p;
+
+        p = () -> { System.out.println("안녕!"); };
+
+        p = () -> System.out.println("안녕!");
+
+        p.print();
+    }
+}
+--
+interface Mathematical {
+    double calculate(double d);
+}
+
+interface Pickable {
+    char pick(String s, int i);
+}
+
+interface Computable {
+    int compute(int x, int y);
+}
+
+class Utils {
+    int add(int a, int b) {
+        return a + b;
+    }
+}
+
+public class MethodRefDemo {
+    public static void main(String[] args) {
+        Mathematical m;
+        Pickable p;
+        Computable c;
+
+//        m = d -> Math.abs(d);
+        m = Math::abs;
+        System.out.println(m.calculate(-50.3));
+
+//        p = (a, b) -> a.charAt(b);
+        p = String::charAt;
+        System.out.println(p.pick("안녕, 인스턴스 메서드 참조!", 4));
+
+        Utils utils = new Utils();
+//        c = (a, b) -> utils.add(a, b);
+        c = utils::add;
+        System.out.println(c.compute(20, 30));
+    }
+}
+
+--
+interface Mathematical {
+    double calculate(double d);
+}
+
+interface Pickable {
+    char pick(String s, int i);
+}
+
+interface Computable {
+    int compute(int x, int y);
+}
+
+class Utils {
+    int add(int a, int b) {
+        return a + b;
+    }
+}
+
+public class MethodRefDemo {
+    public static void main(String[] args) {
+        Mathematical m;
+        Pickable p;
+        Computable c;
+
+//        m = d -> Math.abs(d);
+        m = Math::abs;
+        System.out.println(m.calculate(-50.3));
+
+//        p = (a, b) -> a.charAt(b);
+        p = String::charAt;
+        System.out.println(p.pick("안녕, 인스턴스 메서드 참조!", 4));
+
+        Utils utils = new Utils();
+//        c = (a, b) -> utils.add(a, b);
+        c = utils::add;
+        System.out.println(c.compute(20, 30));
+    }
+}
+--
+import java.util.ArrayList;
+import java.util.List;
+
+public class CarDemo {
+    public static void main(String[] args) {
+        List<Car> dieselCars = findCars(Car.cars, c -> !c.isGasoline());
+        System.out.println("디이젤 자동차 = " + dieselCars);
+
+        List<Car> oldCars = findCars(Car.cars, c -> c.getAge() > 10);
+        System.out.println("오랜된 자동차 = " + oldCars);
+
+        List<Car> oldDieselCars = findCars(Car.cars, c -> c.getAge() > 10 && !c.isGasoline());
+        System.out.println("오래된 디이젤 자동차 = " + oldDieselCars);
+
+        System.out.print("디이젤 자동차 = ");
+        printCars(dieselCars, c -> System.out.printf("%s(%d) ", c.getModel(), c.getAge()));
+        System.out.print("\n오래된 자동차 = ");
+        printCars(oldCars, c -> System.out.printf("%s(%d, %d) ", c.getModel(), c.getAge(), c.getMileage()));
+    }
+
+    public static List<Car> findCars(List<Car> all, CarPredicate cp) {
+        List<Car> result = new ArrayList<>();
+
+        for (Car car : all) {
+            if (cp.test(car))
+                result.add(car);
+        }
+        return result;
+    }
+
+    public static void printCars(List<Car> all, CarConsumer cc) {
+        for (Car car : all) {
+            cc.apply(car);
+        }
+    }
+}
+-
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class CarWithListDemo {
+    public static void main(String[] args) {
+        List<Car> dieselCars = findCars(Car.cars, c -> !c.isGasoline());
+        System.out.println("디이젤 자동차 = " + dieselCars);
+
+        List<Car> oldCars = findCars(Car.cars, c -> c.getAge() > 10);
+        System.out.println("오랜된 자동차 = " + oldCars);
+
+        List<Car> oldDieselCars = findCars(Car.cars, c -> c.getAge() > 10 && !c.isGasoline());
+        System.out.println("오래된 디이젤 자동차 = " + oldDieselCars);
+
+        System.out.print("디이젤 자동차 = ");
+        printCars(dieselCars, c -> System.out.printf("%s(%d) ", c.getModel(), c.getAge()));
+        System.out.print("\n오래된 자동차 = ");
+        printCars(oldCars, c -> System.out.printf("%s(%d, %d) ", c.getModel(), c.getAge(), c.getMileage()));
+    }
+
+    public static List<Car> findCars(List<Car> all, CarPredicate cp) {
+        List<Car> result = new ArrayList<>();
+
+        for (Car car : all) {
+            if (cp.test(car))
+                result.add(car);
+        }
+        return result;
+    }
+
+    public static void printCars(List<Car> all, CarConsumer cc) {
+        for (Car car : all) {
+            cc.apply(car);
+        }
+    }
+}
+--
+interface UseThis {  void use();  }
+
+public class UseThisDemo {
+    public void lambda() {
+        String hi = "Hi!";
+
+        UseThis u1 = new UseThis() {
+            public void use() {
+                System.out.println(this);
+//                hi = hi + " Lambda.";
+            }
+        };
+        u1.use();
+
+        UseThis u2 = () -> {
+            System.out.println(this);
+//                hi = hi + " Lambda.";
+        };
+        u2.use();
+    }
+
+    public String toString() {
+        return "UseThisDemo";
+    }
+
+    public static void main(String[] args) {
+        int one = 1;
+        new UseThisDemo().lambda();
+//        Comparator<String> c = (one, two) -> one.length() - two.length();
+    }
+}
+
