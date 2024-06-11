@@ -95,7 +95,6 @@ public class ListDemo {
         System.out.println();
 
         List<String> car = List.of("그랜저", "소나타", "아반테", "제네시스");
-//        car.set(1, "��Ÿ��");
         car.forEach(s -> System.out.print(s + " "));
 
 //        List<Object> objects = List.of("a", null);
